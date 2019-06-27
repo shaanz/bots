@@ -24,3 +24,9 @@ Steps to Install Selenium on Mac
 6. All set to run Account Aggregation code with 
     python3 createaccunt.py 
 
+Steps to Run Web Inject 
+--------------------------------------
+1. Install Nodejs 
+2. Run nodejs democc.js
+2. Install Tamper Monkey Plugin and Configure the script provided via dashboard 
+
