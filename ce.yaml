@@ -85,7 +85,7 @@ data:
  config.yaml: |
   Vpm:
     # CHANGE ME
-    ClusterName: sb-volt-test4
+    ClusterName: sb-volt-cluster
     ClusterType: ce
     Config: /etc/vpm/config.yaml
     DisableModules: ["dictator", "recruiter"]
@@ -98,7 +98,7 @@ data:
     PrivateNIC: eth0
     SkipStages: ["osSetup", "etcd", "kubelet", "master", "voucher", "workload", "controlWorkload"]
     # CHANGE ME
-    Token: 0ef0fca8-069e-4923-8b8c-fa15fb24815c
+    Token: 0ee97130-970e-423d-bd33-6f5cd0442985
     CertifiedHardware: k8s-minikube-voltmesh
 ---
 apiVersion: apps/v1
